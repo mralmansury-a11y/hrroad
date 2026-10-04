@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% set page_label = module_label %}
+{% set active_panel = active_panel %}
+
+{% block content %}
+<div class="empty-module">
+  <div class="ic">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+  </div>
+  <h3>{{ module_label }} — قيد التطوير</h3>
+  <p>هذه الوحدة جزء من التصميم الكامل للنظام، وسيتم ربطها بقاعدة البيانات في المرحلة التالية من المشروع، بعد اعتماد هذه النسخة المبدئية (تسجيل الدخول ولوحة التحكم).</p>
+  <span class="soon-badge">قريباً في النسخة القادمة</span>
+</div>
+{% endblock %}

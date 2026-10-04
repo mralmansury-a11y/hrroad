@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسجيل الدخول | نظام إدارة الموارد البشرية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div id="loginView">
+  <div class="login-brand">
+    <svg class="swoosh" viewBox="0 0 700 900" preserveAspectRatio="xMidYMid slice">
+      <path d="M700 60 C 520 120, 480 260, 620 380 C 740 480, 700 650, 520 760 L 700 900 L 700 0 Z" fill="rgba(201,162,78,0.10)"/>
+      <path d="M700 180 C 560 230, 540 340, 650 420 C 730 480, 700 600, 580 680 L 700 780 Z" fill="rgba(1,151,214,0.14)"/>
+      <circle cx="120" cy="760" r="220" fill="rgba(255,255,255,0.03)"/>
+    </svg>
+    <div class="brand-top">
+      <div class="mark">ج.و.ت</div>
+      <span>الجهاز الوطني للتنمية</span>
+    </div>
+    <div class="brand-mid">
+      <div class="eyebrow"><span class="dot"></span> نظام الموارد البشرية الموحّد</div>
+      <h1>إدارة أكثر ذكاءً لموظفي الجهاز، في مكان واحد</h1>
+      <p>تابع الحضور، الإجازات، الرواتب وأداء الفريق من لوحة تحكم واحدة مصممة خصيصاً لفرق الموارد البشرية.</p>
+      <div class="brand-stats">
+        <div><b>{{ stats_employees if stats_employees is defined else '412' }}</b><span>موظف</span></div>
+        <div><b>6</b><span>إدارات</span></div>
+        <div><b>96%</b><span>نسبة الحضور</span></div>
+      </div>
+    </div>
+    <div class="brand-bottom">© 2026 الجهاز الوطني للتنمية — جميع الحقوق محفوظة</div>
+  </div>
+
+  <div class="login-form-wrap">
+    <form class="login-form" method="POST" action="{{ url_for('login') }}">
+      <div class="logo-row">
+        <div class="mark">ج.و.ت</div>
+      </div>
+      <h2>تسجيل الدخول</h2>
+      <p class="sub">أدخل بيانات حسابك للوصول إلى نظام الموارد البشرية</p>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <div class="field">
+        <label for="username">اسم المستخدم</label>
+        <div class="input-wrap">
+          <input type="text" id="username" name="username" placeholder="مثال: hoda.hr" value="{{ username|default('') }}" required autofocus>
+          <span class="icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password">كلمة المرور</label>
+        <div class="input-wrap">
+          <input type="password" id="password" name="password" placeholder="••••••••" required>
+          <span class="icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="row-between">
+        <label class="remember"><input type="checkbox" name="remember"> تذكرني</label>
+        <a class="forgot" href="#">نسيت كلمة المرور؟</a>
+      </div>
+
+      <button type="submit" class="btn-primary">
+        دخول
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M13 5l7 7-7 7M20 12H4"/></svg>
+      </button>
+
+      <div class="divider">بيانات دخول تجريبية</div>
+      <div class="role-hint">
+        <b>موظف موارد بشرية:</b> hoda.hr / Hr@12345<br>
+        <b>مسؤول نظام:</b> admin / Admin@12345
+      </div>
+
+      <div class="login-footer">هذه نسخة تجريبية (Demo) لأغراض العرض والتطوير.</div>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
